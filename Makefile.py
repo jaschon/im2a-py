@@ -1,8 +1,8 @@
-init:
-    pip install -r requirements.txt
+import setuptools
 
-test:
-    py.test tests
-
-.PHONY: init test
-
+setuptools.setup(
+    name='im2a',
+    version='.3',
+    install_requires=open('requirements.txt').read().splitlines(),
+    packages=setuptools.find_packages()
+)
