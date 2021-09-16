@@ -7,12 +7,13 @@ from os import path
 
 __author__ = "Jason Rebuck"
 __copyright__ = "2011-2021"
-__version__ = "v.3"
+__version__ = "v.35"
 
 class Im2Scan:
     """Scan Image Pixels and Build Color and Character Maps"""
 
     img = None #pil image instance
+    name = None
 
     block_size = 10 #pixel block size
     char_list = ("#", "$", "*", "!", "'", " ") #list used when mapping [light -> dark]
@@ -30,8 +31,10 @@ class Im2Scan:
         self._load_img(img)
 
     def _load_img(self, img):
+        """Load Image and make PIL Obj"""
         try:
             if img:
+                self.name = img
                 self.img = Image.open(img).convert("L") #open image and convert to b&w
         except (IOError, AttributeError) as error:
             print(error)
@@ -85,6 +88,129 @@ class Im2Scan:
         except IndexError as error:
             print(error)
 
+
+class Im2Block:
+    """Output to Blocks"""
+
+    ntype = "blocks"
+    ext = "png"
+
+    def __init__(self, obj):
+        """Set Size and Obj"""
+        self.obj = obj
+        self.set_size() #set height and width
+        self.set_img() #setup output file and other objects
+        self.set_name() #setup output filename
+
+    def set_img(self):
+        """Make new Draw Obj and PIL Output Image"""
+        self.img = Image.new("L", (self.width, self.height), 255) #make output image
+        self.draw = ImageDraw.Draw(self.img) #make draw object
+
+    def set_size(self):
+        """Get Size of Output Image Based on Map"""
+        self.height= len(self.obj.color_map) * self.obj.block_size #cal height
+        self.width = len(self.obj.color_map[0]) * self.obj.block_size #cal width
+
+    def set_name(self, name=None):
+        """Make Output Filename"""
+        self.name = f"{path.splitext(name or self.obj.name)[0]}_" \
+                f"{self.ntype}.{self.ext}" 
+
+    def run(self):
+        """Use Map to Draw Blocks on Output Image"""
+        row = 0 #var to change row in outputColor array
+        for ypos in range(0, self.height, self.obj.block_size): #loop through height
+            xpos = 0 #x val
+            for col in range(0, len(self.obj.color_map[row])): #loop through width
+                self._write(xpos, ypos, row, col) #send loop var to write function
+                xpos += self.obj.block_size #inc x val
+            row += 1 #inc row
+
+    def _write(self, xpos, ypos, row, col):
+        """Draw Blocks on Output Image"""
+        try:
+            self.draw.rectangle((xpos, ypos, xpos + self.obj.block_size, \
+                    ypos + self.obj.block_size), self.obj.color_map[row][col]) #draw rectangle
+        except IOError:
+            print(f"Unable To Write Block Image Line! ({xpos},{ypos})")
+            raise
+
+    def save(self):
+        """Save Image"""
+        self.img.save(self.name) #save to file
+
+
+class Im2Dots(Im2Block):
+    """Output to Stacked Circles"""
+
+    ntype = "dots"
+    adjust = 1
+
+    def _write(self, xpos, ypos, row, col):
+        """Draw Blocks on Output Image"""
+        try:
+            amount = self.obj.block_size \
+                    - round((self.obj.color_map[row][col]/255.0) \
+                    * round(self.obj.block_size * self.adjust)) 
+            self.draw.ellipse((xpos - amount, ypos - amount, xpos + amount, ypos + amount), \
+                    self.obj.color_map[row][col]) 
+        except IOError:
+            print(f"Unable To Write Ellipse! ({xpos},{ypos} : {amount})")
+            raise
+
+
+class Im2Text(Im2Block):
+    """Output to Text Characters"""
+
+    ntype = "text"
+
+    def __init__(self, obj):
+        """Set Size and Obj"""
+        self.obj = obj
+        self.set_font() #set font and fix blocksize
+        self.set_size() #set height and width
+        self.set_img() #setup output file and other objects
+        self.set_name() #setup output filename
+
+    def set_font(self):
+        self.obj.block_size = 11 #set blocksize to match default fontsize
+        self.font = ImageFont.load_default()
+
+    def _write(self, xpos, ypos, row, col):
+        try:
+            self.draw.text((xpos+3, ypos), self.obj.char_map[row][col], \
+                    font=self.font, fill=self.obj.color_map[row][col]) #write text
+        except IndexError:
+            print(f"Unable To Write Image Text Line! ({xpos},{ypos})")
+            raise
+
+
+class Im2Ascii(Im2Block):
+    """Output to Ascii Text"""
+
+    ntype = "ascii"
+    ext = "txt"
+
+    def __init__(self, obj):
+        """Set Size and Obj"""
+        self.obj = obj
+        self.set_name() #setup output filename
+
+    def run(self):
+        """Skip Run. Everything is done in save."""
+        pass
+
+    def save(self):
+        """Output to Textfile"""
+        try:
+            with open(self.name, 'w') as fs:
+                for ch in self.obj.char_map:
+                    fs.write(''.join(ch)) #join array to string
+                    fs.write('\n')
+        except OSError:
+            print("Unable to Write File!")
+            raise
 
 if __name__ == "__main__":
     pass
