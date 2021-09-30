@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
+import os
 import unittest
+import tempfile
 from context import im2a
 from im2a import core
+from PIL import Image
 
 class TestImgLoad(unittest.TestCase):
     """Test Image Load"""
@@ -69,6 +72,117 @@ class TestAvg(unittest.TestCase):
         #test wrong type
         self.assertEqual(self.im._color_avg(""), 255)
         self.assertEqual(self.im._color_avg("error"), 255)
+
+
+class TestScanImageWhite(unittest.TestCase):
+    """Test White Image"""
+
+    start_color = (255, 255, 255)
+    size = (100, 100)
+    test_color = 255
+    test_char = " "
+
+    def test_image(self):
+        """Test Solid Image"""
+        with tempfile.TemporaryDirectory() as folder:
+            path = os.path.join(folder, "test.png")
+            image = Image.new('RGB', self.size, self.start_color)
+            image.save(path)
+            im = core.Im2Scan(path)
+            for row in im.color_map:
+                for col in row:
+                    self.assertEqual(col, self.test_color)
+            for row in im.char_map:
+                for col in row:
+                    self.assertEqual(col, self.test_char)
+
+class TestScanImageBlack(TestScanImageWhite):
+    """Test Black Image"""
+    start_color = (0, 0, 0)
+    test_color = 0
+    test_char = "#"
+
+class TestScanImageGray(TestScanImageWhite):
+    """Test Gray Image"""
+    test_color = 128 
+    start_color = (128, 128, 128)
+    test_char = "*"
+
+class TestScanImageDkGray(TestScanImageWhite):
+    """Test Dark Gray Image"""
+    test_color = 50 
+    start_color = (50, 50, 50)
+    test_char = "$"
+
+class TestScanImageLargeRange(TestScanImageWhite):
+    """Test Large Color Range"""
+    test_color = 255 
+    start_color = (300, 400, 500)
+    test_char = " "
+
+class TestScanImageLargeSize(TestScanImageWhite):
+    """Test Large Image"""
+    test_color = 128 
+    start_color = (128, 128, 128)
+    size = (500, 1000)
+    test_char = "*"
+
+
+class TestBlockOutput(unittest.TestCase):
+    """Test Block Output"""
+
+    size = (100, 100)
+    start_color = (0, 0, 0)
+
+    def test_image(self):
+        """Test Block Image"""
+        with tempfile.TemporaryDirectory() as folder:
+            path = os.path.join(folder, "test.png")
+            image = Image.new('RGB', self.size, self.start_color)
+            image.save(path)
+            im = core.Im2Scan(path)
+            block = core.Im2Block(im)
+            block.save()
+            self.assertTrue(os.path.isfile(block.name))
+
+
+class TestTextOutputBlack(unittest.TestCase):
+    """Test Text Output Black"""
+
+    size = (100, 100)
+    start_color = (0, 0, 0)
+    text_char = "#"
+
+    def test_image(self):
+        """Test Text File"""
+        with tempfile.TemporaryDirectory() as folder:
+            path = os.path.join(folder, "test.png")
+            image = Image.new('RGB', self.size, self.start_color)
+            image.save(path)
+            im = core.Im2Scan(path)
+            text = core.Im2Ascii(im)
+            text.save()
+            self.assertTrue(os.path.isfile(text.name))
+
+            with open(text.name) as fs:
+                for row in fs.readlines():
+                    self.assertEqual(row.rstrip("\n"), 
+                            "".join([self.text_char for char in \
+                                    range(int(self.size[0]/im.block_size))]))
+
+class TestTextOutputGray(TestTextOutputBlack):
+    """Test Text Output Gray"""
+
+    size = (1000, 100)
+    start_color = (128, 128, 128)
+    text_char = "*"
+
+class TestTextOutputWhite(TestTextOutputBlack):
+    """Test Text Output White"""
+
+    size = (500, 100)
+    start_color = (255, 255, 255)
+    text_char = " "
 
 
 if __name__ == "__main__":
