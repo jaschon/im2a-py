@@ -1,5 +1,5 @@
 # im2a
-__Another image to Ascii text converter__
+__Another image to Ascii/Blocks/Circles/Other converter...__
 
 ## Requirements
 
