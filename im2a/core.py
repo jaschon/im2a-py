@@ -92,7 +92,7 @@ class Im2Scan:
 class Im2Block:
     """Output to Blocks"""
 
-    ntype = "blocks"
+    file_name = "blocks"
     ext = "png"
 
     def __init__(self, obj):
@@ -115,7 +115,7 @@ class Im2Block:
     def set_name(self, name=None):
         """Make Output Filename"""
         self.name = f"{path.splitext(name or self.obj.name)[0]}_" \
-                f"{self.ntype}.{self.ext}" 
+                f"{self.file_name}.{self.ext}" 
 
     def run(self):
         """Use Map to Draw Blocks on Output Image"""
@@ -144,15 +144,15 @@ class Im2Block:
 class Im2Dots(Im2Block):
     """Output to Stacked Circles"""
 
-    ntype = "dots"
-    adjust = 1
+    file_name = "dots"
 
     def _write(self, xpos, ypos, row, col):
         """Draw Blocks on Output Image"""
         try:
-            amount = self.obj.block_size \
-                    - round((self.obj.color_map[row][col]/255.0) \
-                    * round(self.obj.block_size * self.adjust)) 
+            adjust = round(self.obj.block_size / 2)
+            xpos += adjust
+            ypos += adjust
+            amount = adjust - ((self.obj.color_map[row][col]/255.0) * adjust)
             self.draw.ellipse((xpos - amount, ypos - amount, xpos + amount, ypos + amount), \
                     self.obj.color_map[row][col]) 
         except IOError:
@@ -163,7 +163,7 @@ class Im2Dots(Im2Block):
 class Im2Text(Im2Block):
     """Output to Text Characters"""
 
-    ntype = "text"
+    file_name = "text"
 
     def __init__(self, obj):
         """Set Size and Obj"""
@@ -189,7 +189,7 @@ class Im2Text(Im2Block):
 class Im2Ascii(Im2Block):
     """Output to Ascii Text"""
 
-    ntype = "ascii"
+    file_name = "ascii"
     ext = "txt"
 
     def __init__(self, obj):
