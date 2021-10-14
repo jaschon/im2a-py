@@ -13,15 +13,17 @@ import os
 import sys
 from im2a import core
 
+__author__ = "Jason Rebuck"
+__copyright__ = "2011-2021"
+
+
 def main(parser):
     """Decide what action to run."""
     args = parser.parse_args()
-
     try:
         im = core.Im2Scan(args.path, block_size=args.size)
     except (FileNotFoundError, OSError):
         sys.exit("Image Problems! Check Image Type and Path.")
-
     if args.block:
         output = core.Im2Block(im)
     elif args.text:
@@ -30,7 +32,6 @@ def main(parser):
         output = core.Im2Dots(im)
     else:
         output = core.Im2Ascii(im)
-
     output.save()
 
 def setup_parser():

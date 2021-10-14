@@ -2,15 +2,16 @@
 
 import os
 from setuptools import setup
+from im2a import core
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
     name = "im2a",
-    version = "0.35",
-    author = "Jason Rebuck",
-    description = ("Image to Ascii text converter with various other output options."),
+    version = core.__version__,
+    author = core.__author__,
+    description = (core.__doc__,),
     keywords = "Ascii, Image",
     url = "https://github.com/jaschon/im2a-py",
     packages=['im2a', 'bin', 'tests'],

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 
-"""Total Rewrite of im2a"""
+"""Image to Ascii text converter with various other output options."""
 
 from PIL import Image, ImageDraw, ImageFont
 from os import path
+import random
 
 __author__ = "Jason Rebuck"
 __copyright__ = "2011-2021"
-__version__ = "v.35"
+__version__ = "0.36"
 
 class Im2Scan:
     """Scan Image Pixels and Build Color and Character Maps"""
@@ -16,7 +17,7 @@ class Im2Scan:
     name = None
 
     block_size = 10 #pixel block size
-    char_list = ("#", "$", "*", "!", "'", " ") #list used when mapping [dark -> light]
+    char_list = ("#", "$", "*", "!", "'", " ") #mapping [dark -> light]
 
     char_map = [] #final character map
     color_map = [] #final color map
@@ -143,7 +144,7 @@ class Im2Block:
 
 
 class Im2Dots(Im2Block):
-    """Output to Stacked Circles"""
+    """Output to Circles"""
 
     file_name = "dots"
 
@@ -169,20 +170,20 @@ class Im2Text(Im2Block):
     def __init__(self, obj):
         """Set Size and Obj"""
         self.obj = obj
-        self._set_font() #set font and fix blocksize
-        self._set_size() #set height and width
-        self._set_img() #setup output file and other objects
-        self._set_name() #setup output filename
-        self._run() #run write
+        self._set_font()
+        self._set_size()
+        self._set_img()
+        self._set_name()
+        self._run()
 
     def _set_font(self):
-        self.obj.block_size = 11 #set blocksize to match default fontsize
+        self.obj.block_size = 11
         self.font = ImageFont.load_default()
 
     def _write(self, xpos, ypos, row, col):
         try:
             self.draw.text((xpos+3, ypos), self.obj.char_map[row][col], \
-                    font=self.font, fill=self.obj.color_map[row][col]) #write text
+                    font=self.font, fill=self.obj.color_map[row][col])
         except IndexError:
             print(f"Unable To Write Image Text Line! ({xpos},{ypos})")
             raise
@@ -197,7 +198,7 @@ class Im2Ascii(Im2Block):
     def __init__(self, obj):
         """Set Size and Obj"""
         self.obj = obj
-        self._set_name() #setup output filename
+        self._set_name()
 
     def _run(self):
         """Skip Run. Everything is done in save."""
@@ -208,11 +209,49 @@ class Im2Ascii(Im2Block):
         try:
             with open(self.name, 'w') as fs:
                 for ch in self.obj.char_map:
-                    fs.write(''.join(ch)) #join array to string
+                    fs.write(''.join(ch))
                     fs.write('\n')
         except OSError:
             print("Unable to Write File!")
             raise
+
+
+#Experimental
+class Im2Poly(Im2Block):
+    """Output to N-Sided Polygon"""
+
+    file_name = "polygon"
+    sides = 6
+    rotation = 0
+
+    def _write(self, xpos, ypos, row, col):
+        """Draw Blocks on Output Image"""
+        try:
+            adjust = round(self.obj.block_size / 2)
+            xpos += adjust
+            ypos += adjust
+            self.draw.regular_polygon((xpos, ypos, adjust), self.sides, \
+                    fill=self.obj.color_map[row][col], rotation=self.rotation) 
+        except IOError:
+            print(f"Unable To Write! ({xpos},{ypos})")
+            raise
+
+
+class Im2Oct(Im2Poly):
+    """Output to Octagon"""
+
+    file_name = "octagon"
+    sides = 8
+    rotation = 0
+
+
+class Im2Triangle(Im2Poly):
+    """Output to Triangle"""
+
+    file_name = "triangle"
+    sides = 3
+    rotation = 90
+
 
 if __name__ == "__main__":
     pass
