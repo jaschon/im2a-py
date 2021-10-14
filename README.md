@@ -31,8 +31,8 @@ im2a [path] --size (optional)
 ```
 from im2a import core
 scan = core.Im2Scan(img=<path location>, 
-               block_size=<size>, 
-               char_list=[array of characters])
+               block_size=<size (default 10)>, 
+               char_list=[array of characters (optional)])
 output = core.Im2Block(scan)
 output.save()
 ```
