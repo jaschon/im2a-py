@@ -48,9 +48,9 @@ output.save()
     * Optional Array or Tuple of characters arranged from dark to light.
     * Default ("#", "$", "*", "!", "'", " ").
     
-### Output Image
+### Output
 * New file will be saved based on name and folder of input image.
-* Format: [folder]/[base]_[type (block|dots|text|ascii)].[png (for images)|txt (for ascii)].
+* Format: __[folder]/[base]_[type (block|dots|text|ascii)].[png (for images)|txt (for ascii)]__
     
 
 
