@@ -37,4 +37,20 @@ output = core.Im2Block(scan)
 output.save()
 ```
 
+### Options
+
+1. Image Path <String Path Location>
+    * Any image file that can be read with Pillow.
+2. Block Size <Int>
+    * Size of pixel area that is scanned.
+    * Default 10 (10px by 10px).
+3. Character List
+    * Optional Array or Tuple of characters arranged from dark to light.
+    * Default ("#", "$", "*", "!", "'", " ").
+    
+### Output Image
+* New file will be saved based on name and folder of input image.
+* Format: [folder]/[base]_[type (block|dots|text|ascii)].[png (for images)|txt (for ascii)]
+    
+
 
