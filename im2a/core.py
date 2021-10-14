@@ -173,7 +173,7 @@ class Im2Text(Im2Block):
         self._set_size() #set height and width
         self._set_img() #setup output file and other objects
         self._set_name() #setup output filename
-        self.run() #run write
+        self._run() #run write
 
     def _set_font(self):
         self.obj.block_size = 11 #set blocksize to match default fontsize
