@@ -16,7 +16,7 @@ class Im2Scan:
     name = None
 
     block_size = 10 #pixel block size
-    char_list = ("#", "$", "*", "!", "'", " ") #list used when mapping [light -> dark]
+    char_list = ("#", "$", "*", "!", "'", " ") #list used when mapping [dark -> light]
 
     char_map = [] #final character map
     color_map = [] #final color map
@@ -98,26 +98,27 @@ class Im2Block:
     def __init__(self, obj):
         """Set Size and Obj"""
         self.obj = obj
-        self.set_size() #set height and width
-        self.set_img() #setup output file and other objects
-        self.set_name() #setup output filename
+        self._set_size() #set height and width
+        self._set_img() #setup output file and other objects
+        self._set_name() #setup output filename
+        self._run() #run write
 
-    def set_img(self):
+    def _set_img(self):
         """Make new Draw Obj and PIL Output Image"""
         self.img = Image.new("L", (self.width, self.height), 255) #make output image
         self.draw = ImageDraw.Draw(self.img) #make draw object
 
-    def set_size(self):
+    def _set_size(self):
         """Get Size of Output Image Based on Map"""
         self.height= len(self.obj.color_map) * self.obj.block_size #cal height
         self.width = len(self.obj.color_map[0]) * self.obj.block_size #cal width
 
-    def set_name(self, name=None):
+    def _set_name(self, name=None):
         """Make Output Filename"""
         self.name = f"{path.splitext(name or self.obj.name)[0]}_" \
                 f"{self.file_name}.{self.ext}" 
 
-    def run(self):
+    def _run(self):
         """Use Map to Draw Blocks on Output Image"""
         row = 0 #var to change row in outputColor array
         for ypos in range(0, self.height, self.obj.block_size): #loop through height
@@ -168,12 +169,13 @@ class Im2Text(Im2Block):
     def __init__(self, obj):
         """Set Size and Obj"""
         self.obj = obj
-        self.set_font() #set font and fix blocksize
-        self.set_size() #set height and width
-        self.set_img() #setup output file and other objects
-        self.set_name() #setup output filename
+        self._set_font() #set font and fix blocksize
+        self._set_size() #set height and width
+        self._set_img() #setup output file and other objects
+        self._set_name() #setup output filename
+        self.run() #run write
 
-    def set_font(self):
+    def _set_font(self):
         self.obj.block_size = 11 #set blocksize to match default fontsize
         self.font = ImageFont.load_default()
 
@@ -195,9 +197,9 @@ class Im2Ascii(Im2Block):
     def __init__(self, obj):
         """Set Size and Obj"""
         self.obj = obj
-        self.set_name() #setup output filename
+        self._set_name() #setup output filename
 
-    def run(self):
+    def _run(self):
         """Skip Run. Everything is done in save."""
         pass
 
