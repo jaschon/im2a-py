@@ -29,10 +29,11 @@ im2a [path] --size (optional)
 ### Example
 
 ```
-scan = Im2Scan(img=[path location], 
+from im2a import core
+scan = core.Im2Scan(img=[path location], 
                block_size=[size of blocks (default 10)], 
                char_list=[ascii char map used for output (optional)])
-output = Im2Block(scan)
+output = core.Im2Block(scan)
 output.save()
 ```
 
