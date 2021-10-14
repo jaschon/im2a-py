@@ -1,5 +1,5 @@
 # im2a
-__Image to Ascii text converter with various other output options....__
+__Image to Ascii text converter with various other output options.__
 
 ## Requirements
 
