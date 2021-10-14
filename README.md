@@ -17,13 +17,13 @@ im2a [path] --size (optional)
 
 ## Class Usage
 
-1. Scan Image with Im2Scan Class
-2. Add scan to Output Class
+1. Make a scan object with Im2Scan.
+2. Add scan object to one of the output classes.
     * Im2Block (Image as Blocks of Gray)
     * Im2Dots (Image as Dots of Gray)
     * Im2Text (Image as Text Characters)
     * Im2Ascii (Ascii Text File)
-3. Run _save()_ Method
+3. Run _save()_.
 
 ### Example
 
