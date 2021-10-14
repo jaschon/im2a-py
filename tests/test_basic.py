@@ -3,7 +3,6 @@
 import os
 import unittest
 import tempfile
-from _helper import im2a
 from im2a import core
 from PIL import Image
 
