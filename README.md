@@ -50,7 +50,7 @@ output.save()
     
 ### Output Image
 * New file will be saved based on name and folder of input image.
-* Format: [folder]/[base]_[type (block|dots|text|ascii)].[png (for images)|txt (for ascii)]
+* Format: [folder]/[base]_[type (block|dots|text|ascii)].[png (for images)|txt (for ascii)].
     
 
 
