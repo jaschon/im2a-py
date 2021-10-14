@@ -3,6 +3,7 @@ __Image to Ascii text converter with various other output options....__
 
 ## Requirements
 
+- Argparse
 - Pillow
 
 ## Script Usage
