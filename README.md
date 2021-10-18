@@ -28,6 +28,7 @@ __Image to Ascii text converter with various other output options.__
     * Im2Dots (Image as Dots of Gray)
     * Im2Text (Image as Text Characters)
     * Im2Poly (Image as N-Sided Polygon with Rotation)
+      * Takes 2 extra options (size and rotation)
 3. Run _save()_.
 
 ### Example
@@ -51,4 +52,7 @@ output.save()
 3. Character List
     * Optional Array or Tuple of characters arranged from dark to light.
     * Default ("#", "$", "*", "!", "'", " ").
+    
+    
+    
     
