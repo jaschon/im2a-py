@@ -9,11 +9,14 @@ __Image to Ascii text converter with various other output options.__
 ## Script Usage
 
 ```
-im2a [path] --size (optional size of scan blocks. default = 10)
-    --ascii (default. outputs text file.)
-    --block
-    --dots
-    --text
+./im2a.py [path] 
+    --ascii (default type, output to text file)
+    --block (grayscale blocks)
+    --dots (scaled grayscale circles)
+    --text (grayscale text characters)
+    --polygon (grayscale n-sides polygons with rotation. default 8 sides, no rotation)
+    --size (optional, default 20)
+    --sides (optional for polygon) --rotation (optional for polygon)
 ```
 
 ## Class Usage
@@ -24,6 +27,7 @@ im2a [path] --size (optional size of scan blocks. default = 10)
     * Im2Block (Image as Blocks of Gray)
     * Im2Dots (Image as Dots of Gray)
     * Im2Text (Image as Text Characters)
+    * Im2Poly (Image as N-Sided Polygon with Rotation)
 3. Run _save()_.
 
 ### Example
@@ -37,7 +41,7 @@ output = core.Im2Ascii(scan)
 output.save()
 ```
 
-### Options
+### Scan Options
 
 1. Image Path <String Path Location>
     * Any image file that can be read with Pillow.
@@ -47,6 +51,13 @@ output.save()
 3. Character List
     * Optional Array or Tuple of characters arranged from dark to light.
     * Default ("#", "$", "*", "!", "'", " ").
+    
+### Im2[Output Type] Options
+
+1. Im2Scan object.
+2  Im2Poly has 2 extra options.
+    * sides (int)
+    * rotation (int, 0-360)
     
 ### Output
 * New file will be saved based on name and folder of input image.
