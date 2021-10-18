@@ -34,7 +34,7 @@ def main(parser):
     elif args.dots:
         output = core.Im2Dots(im)
     elif args.polygon:
-        output = core.Im2Poly(im, sides=args.sides, rotation=args.rotation)
+        output = core.Im2Polygon(im, sides=args.sides, rotation=args.rotation)
     else:
         output = core.Im2Ascii(im)
     output.save()

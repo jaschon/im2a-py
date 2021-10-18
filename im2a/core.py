@@ -217,7 +217,7 @@ class Im2Ascii(Im2Block):
             raise
 
 
-class Im2Poly(Im2Block):
+class Im2Polygon(Im2Block):
     """Output to N-Sided Polygon"""
 
     file_name = "polygon"
