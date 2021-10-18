@@ -4,11 +4,10 @@
 
 from PIL import Image, ImageDraw, ImageFont
 from os import path
-import random
 
 __author__ = "Jason Rebuck"
 __copyright__ = "2011-2021"
-__version__ = "0.36"
+__version__ = "0.38"
 
 class Im2Scan:
     """Scan Image Pixels and Build Color and Character Maps"""
@@ -99,10 +98,14 @@ class Im2Block:
     def __init__(self, obj):
         """Set Size and Obj"""
         self.obj = obj
+        self._setup()
+        self._run()
+
+    def _setup(self):
+        """Setup Variables"""
         self._set_size() #set height and width
         self._set_img() #setup output file and other objects
         self._set_name() #setup output filename
-        self._run() #run write
 
     def _set_img(self):
         """Make new Draw Obj and PIL Output Image"""
@@ -171,9 +174,7 @@ class Im2Text(Im2Block):
         """Set Size and Obj"""
         self.obj = obj
         self._set_font()
-        self._set_size()
-        self._set_img()
-        self._set_name()
+        self._setup()
         self._run()
 
     def _set_font(self):
@@ -216,13 +217,18 @@ class Im2Ascii(Im2Block):
             raise
 
 
-#Experimental
 class Im2Poly(Im2Block):
     """Output to N-Sided Polygon"""
 
     file_name = "polygon"
-    sides = 6
-    rotation = 0
+
+    def __init__(self, obj, sides=8, rotation=0):
+        """Set Size and Obj"""
+        self.obj = obj
+        self._setup()
+        self.sides = sides if sides > 2 else 3
+        self.rotation = rotation
+        self._run()
 
     def _write(self, xpos, ypos, row, col):
         """Draw Blocks on Output Image"""
@@ -235,22 +241,6 @@ class Im2Poly(Im2Block):
         except IOError:
             print(f"Unable To Write! ({xpos},{ypos})")
             raise
-
-
-class Im2Oct(Im2Poly):
-    """Output to Octagon"""
-
-    file_name = "octagon"
-    sides = 8
-    rotation = 0
-
-
-class Im2Triangle(Im2Poly):
-    """Output to Triangle"""
-
-    file_name = "triangle"
-    sides = 3
-    rotation = 90
 
 
 if __name__ == "__main__":

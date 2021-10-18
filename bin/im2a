@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
 """
-./im2a.py [path] --size (optional)
-    --block
-    --ascii (default)
-    --dots
-    --text
+./im2a.py [path] 
+    --ascii (default type, output to text file)
+    --block (grayscale blocks)
+    --dots (scaled grayscale circles)
+    --text (grayscale text characters)
+    --polygon (grayscale n-sides polygons with rotation. default 8 sides, no rotation)
+    --size (optional, default 20)
+    --sides (optional for polygon) --rotation (optional for polygon)
 """
 
 import argparse
@@ -30,6 +33,8 @@ def main(parser):
         output = core.Im2Text(im)
     elif args.dots:
         output = core.Im2Dots(im)
+    elif args.polygon:
+        output = core.Im2Poly(im, sides=args.sides, rotation=args.rotation)
     else:
         output = core.Im2Ascii(im)
     output.save()
@@ -39,11 +44,16 @@ def setup_parser():
     parser = argparse.ArgumentParser(description="im2a Converter")
     parser.add_argument("path", help="Image Path")
     parser.add_argument("--size", "-s", help="Block Size", type=int, default=10, action="store")
+    parser.add_argument("--sides", help="N-Sides (Polygon Only)", 
+            type=int, default=8, action="store")
+    parser.add_argument("--rotation", help="Rotation (Polygon Only)", 
+            type=int, default=0, action="store")
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--block", "-b", help="Output as Blocks", action="store_true")
     group.add_argument("--ascii", "-a", help="Output in Ascii Text", action="store_true")
     group.add_argument("--dots", "-d", help="Output in Dots", action="store_true")
     group.add_argument("--text", "-t", help="Output in Text", action="store_true")
+    group.add_argument("--polygon", "-p", help="Output in N-Sided Polygon", action="store_true")
     return parser
 
 if __name__ == "__main__":
