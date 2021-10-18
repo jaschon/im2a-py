@@ -27,7 +27,7 @@ __Image to Ascii text converter with various other output options.__
     * Im2Block (Image as Blocks of Gray)
     * Im2Dots (Image as Dots of Gray)
     * Im2Text (Image as Text Characters)
-    * Im2Poly (Image as N-Sided Polygon with Rotation)
+    * Im2Polygon (Image as N-Sided Polygon with Rotation)
       * Takes 2 extra options (size and rotation)
 3. Run _save()_.
 
