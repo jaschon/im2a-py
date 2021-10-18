@@ -52,16 +52,3 @@ output.save()
     * Optional Array or Tuple of characters arranged from dark to light.
     * Default ("#", "$", "*", "!", "'", " ").
     
-### Im2[Output Type] Options
-
-1. Im2Scan object.
-2  Im2Poly has 2 extra options.
-    * sides (int)
-    * rotation (int, 0-360)
-    
-### Output
-* New file will be saved based on name and folder of input image.
-* Format: __[folder]/[base]_[type (block|dots|text|ascii)].[png (for images)|txt (for ascii)]__
-    
-
-
