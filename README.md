@@ -5,6 +5,11 @@ __Image to Ascii text converter with various other output options.__
 
 - Argparse
 - Pillow
+## Install
+
+```
+python setup.py install
+```
 
 ## Script Usage
 
