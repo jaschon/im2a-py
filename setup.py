@@ -18,4 +18,5 @@ setup(
     long_description=read('README.md'),
     install_requires=read('requirements.txt').splitlines(),
     scripts=['bin/im2a',],
+    test_suite="tests",
 )
