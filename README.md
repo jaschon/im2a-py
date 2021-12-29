@@ -15,14 +15,29 @@ python setup.py test
 ## Script Usage
 
 ```
-./im2a.py [path] 
+./im2a.py [option flags] [path] 
     --ascii (default type, output to text file)
     --block (grayscale blocks)
     --dots (scaled grayscale circles)
     --text (grayscale text characters)
     --polygon (grayscale n-sides polygons with rotation. default 8 sides, no rotation)
     --size (optional, default 20)
-    --sides (optional for polygon) --rotation (optional for polygon)
+    --sides (optional for polygon) 
+    --rotation (optional for polygon)
+```
+
+### Script Examples
+
+```
+./im2a.py ~/Desktop/tacocat.jpg
+./im2a.py --ascii ~/Desktop/tacocat.jpg
+# Ascii Text File
+
+./im2a.py --dots ~/Desktop/tacocat.jpg
+# Use Dots
+
+./im2a.py --polygon --size 40 --sides 9 --rotation 45  ~/Desktop/tacocat.jpg
+# Block Size 40px / Use 9-Sided Polygons / Rotated 45deg
 ```
 
 ## Class Usage
@@ -37,7 +52,7 @@ python setup.py test
       * Takes 2 extra options (size and rotation)
 3. Run _save()_.
 
-### Example
+### Class Example
 
 ```
 import im2a
