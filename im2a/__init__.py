@@ -7,7 +7,7 @@ from os import path
 
 __author__ = "Jason Rebuck"
 __copyright__ = "2011-2021"
-__version__ = "0.38"
+__version__ = "0.39"
 
 class Im2Scan:
     """Scan Image Pixels and Build Color and Character Maps"""
