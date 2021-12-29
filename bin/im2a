@@ -14,7 +14,7 @@
 import argparse
 import os
 import sys
-from im2a import core
+import im2a
 
 __author__ = "Jason Rebuck"
 __copyright__ = "2011-2021"
@@ -24,19 +24,19 @@ def main(parser):
     """Decide what action to run."""
     args = parser.parse_args()
     try:
-        im = core.Im2Scan(args.path, block_size=args.size)
+        im = im2a.Im2Scan(args.path, block_size=args.size)
     except (FileNotFoundError, OSError):
         sys.exit("Image Problems! Check Image Type and Path.")
     if args.block:
-        output = core.Im2Block(im)
+        output = im2a.Im2Block(im)
     elif args.text:
-        output = core.Im2Text(im)
+        output = im2a.Im2Text(im)
     elif args.dots:
-        output = core.Im2Dots(im)
+        output = im2a.Im2Dots(im)
     elif args.polygon:
-        output = core.Im2Polygon(im, sides=args.sides, rotation=args.rotation)
+        output = im2a.Im2Polygon(im, sides=args.sides, rotation=args.rotation)
     else:
-        output = core.Im2Ascii(im)
+        output = im2a.Im2Ascii(im)
     output.save()
 
 def setup_parser():

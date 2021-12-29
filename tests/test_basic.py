@@ -3,14 +3,14 @@
 import os
 import unittest
 import tempfile
-from im2a import core
+import im2a
 from PIL import Image
 
 class TestImgLoad(unittest.TestCase):
     """Test Image Load"""
 
     def test_load_none(self):
-        im = core.Im2Scan()
+        im = im2a.Im2Scan()
         self.assertFalse(im.img)
 
 class TestMap(unittest.TestCase):
@@ -18,7 +18,7 @@ class TestMap(unittest.TestCase):
 
     def setUp(self):
         """Setup Class"""
-        self.im = core.Im2Scan()
+        self.im = im2a.Im2Scan()
 
     def test_map(self):
         """Test List of Values"""
@@ -45,7 +45,7 @@ class TestAvg(unittest.TestCase):
 
     def setUp(self):
         """Setup Class"""
-        self.im = core.Im2Scan()
+        self.im = im2a.Im2Scan()
 
     def test_white(self):
         """Test All White"""
@@ -87,7 +87,7 @@ class TestScanImageWhite(unittest.TestCase):
             path = os.path.join(folder, "test.png")
             image = Image.new('RGB', self.size, self.start_color)
             image.save(path)
-            im = core.Im2Scan(path)
+            im = im2a.Im2Scan(path)
             for row in im.color_map:
                 for col in row:
                     self.assertEqual(col, self.test_color)
@@ -139,8 +139,8 @@ class TestBlockOutput(unittest.TestCase):
             path = os.path.join(folder, "test.png")
             image = Image.new('RGB', self.size, self.start_color)
             image.save(path)
-            im = core.Im2Scan(path)
-            block = core.Im2Block(im)
+            im = im2a.Im2Scan(path)
+            block = im2a.Im2Block(im)
             block.save()
             self.assertTrue(os.path.isfile(block.name))
 
@@ -158,8 +158,8 @@ class TestTextOutputBlack(unittest.TestCase):
             path = os.path.join(folder, "test.png")
             image = Image.new('RGB', self.size, self.start_color)
             image.save(path)
-            im = core.Im2Scan(path)
-            text = core.Im2Ascii(im)
+            im = im2a.Im2Scan(path)
+            text = im2a.Im2Ascii(im)
             text.save()
             self.assertTrue(os.path.isfile(text.name))
 
