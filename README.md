@@ -9,6 +9,7 @@ __Image to Ascii text converter with various other output options.__
 
 ```
 python setup.py install
+python setup.py test
 ```
 
 ## Script Usage
@@ -39,11 +40,11 @@ python setup.py install
 ### Example
 
 ```
-from im2a import core
-scan = core.Im2Scan(img=<path location>, 
+import im2a
+scan = im2a.Im2Scan(img=<path location>, 
                block_size=<size (default = 10)>, 
                char_list=[array of characters (optional)])
-output = core.Im2Ascii(scan)
+output = im2a.Im2Ascii(scan)
 output.save()
 ```
 
