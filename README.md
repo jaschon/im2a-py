@@ -1,5 +1,5 @@
 # im2a
-__Image to Ascii text converter with various other output options.__
+__Convert images to a grid of Ascii characters, dots, blocks or n-sided polygons.__
 
 ## Requirements
 
