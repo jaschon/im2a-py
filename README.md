@@ -40,6 +40,12 @@ python setup.py test
 # Block Size 40px / Use 9-Sided Polygons / Rotated 45deg
 ```
 
+---
+
+![checky](https://github.com/jaschon/im2a-py/blob/main/_screenshots/main.png?raw=true)
+
+---
+
 ## Class Usage
 
 1. Make a scan object with Im2Scan.
