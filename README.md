@@ -49,7 +49,7 @@ python setup.py test
 
 ##### Dots
 
-![im2a example 2](https://github.com/jaschon/im2a-py/blob/main/_screenshots/main.png?raw=true)
+![im2a example 2](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_dots.png?raw=true)
 
 ---
 
