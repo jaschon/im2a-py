@@ -28,30 +28,21 @@ im2a [option flags] [path]
 
 ### Script Examples
 
+##### 1. Ascii (Text File)
 ```
 im2a ~/Desktop/tri.jpg
-im2a --ascii ~/Desktop/tri.jpg
-# 1. Ascii text file
-
-im2a --text ~/Desktop/tri.jpg
-# 2. PNG image using text characters
-
-im2a --dots ~/Desktop/tri.jpg
-# 3. PNG image using dots
-
-im2a --polygon --size 40 --sides 9 --rotation 45  ~/Desktop/tri.jpg
-# 4. PNG image using polygons
-# Options: block size 40px / 9-sided polygons / rotated 45deg
+# NOTE: --ascii is default
 ```
----
-
-##### 1. Ascii (Text File)
 
 ![im2a example 1](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_ascii.png?raw=true)
 
 ---
 
 ##### 2. Text (PNG Image)
+
+```
+im2a --text ~/Desktop/tri.jpg
+```
 
 ![im2a example 2](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_text.png?raw=true)
 
@@ -60,11 +51,20 @@ im2a --polygon --size 40 --sides 9 --rotation 45  ~/Desktop/tri.jpg
 
 ##### 3. Dots (PNG Image)
 
+```
+im2a --dots ~/Desktop/tri.jpg
+```
+
 ![im2a example 3](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_dots.png?raw=true)
 
 ---
 
 ##### 4. Polygon (PNG Image)
+
+```
+im2a --polygon --size 40 --sides 9 --rotation 45  ~/Desktop/tri.jpg
+# Options: block size 40px / 9-sided polygons / rotated 45deg
+```
 
 ![im2a example 4](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_polygon.png?raw=true)
 
