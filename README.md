@@ -15,7 +15,7 @@ python setup.py test
 ## Script Usage
 
 ```
-./im2a.py [option flags] [path] 
+im2a [option flags] [path] 
     --ascii (default type, output to text file)
     --block (grayscale blocks)
     --dots (scaled grayscale circles)
@@ -29,14 +29,14 @@ python setup.py test
 ### Script Examples
 
 ```
-./im2a.py ~/Desktop/tri.jpg
-./im2a.py --ascii ~/Desktop/tri.jpg
+im2a ~/Desktop/tri.jpg
+im2a --ascii ~/Desktop/tri.jpg
 # Ascii Text File
 
-./im2a.py --dots ~/Desktop/tri.jpg
+im2a --dots ~/Desktop/tri.jpg
 # Use Dots
 
-./im2a.py --polygon --size 40 --sides 9 --rotation 45  ~/Desktop/tri.jpg
+im2a --polygon --size 40 --sides 9 --rotation 45  ~/Desktop/tri.jpg
 # Block Size 40px / Use 9-Sided Polygons / Rotated 45deg
 ```
 ---
