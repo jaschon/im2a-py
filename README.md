@@ -41,7 +41,7 @@ im2a --dots ~/Desktop/tri.jpg
 
 im2a --polygon --size 40 --sides 9 --rotation 45  ~/Desktop/tri.jpg
 # PNG Image using polygons.
-# Block Size 40px / Use 9-Sided Polygons / Rotated 45deg
+# Options: block size 40px / 9-sided polygons / rotated 45deg
 ```
 ---
 
