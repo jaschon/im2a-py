@@ -46,6 +46,10 @@ python setup.py test
 
 ---
 
+![checky](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_text.png?raw=true)
+
+---
+
 ## Class Usage
 
 1. Make a scan object with Im2Scan.
