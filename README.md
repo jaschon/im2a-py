@@ -47,13 +47,13 @@ python setup.py test
 
 ---
 
-#### Dots
+##### Dots
 
 ![im2a example 2](https://github.com/jaschon/im2a-py/blob/main/_screenshots/main.png?raw=true)
 
 ---
 
-#### Text
+##### Text
 
 ![im2a example 3](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_text.png?raw=true)
 
