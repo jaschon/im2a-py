@@ -39,14 +39,17 @@ python setup.py test
 ./im2a.py --polygon --size 40 --sides 9 --rotation 45  ~/Desktop/tri.jpg
 # Block Size 40px / Use 9-Sided Polygons / Rotated 45deg
 ```
+---
+
+![im2a example 1](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_ascii.png?raw=true)
 
 ---
 
-![im2a example 1](https://github.com/jaschon/im2a-py/blob/main/_screenshots/main.png?raw=true)
+![im2a example 2](https://github.com/jaschon/im2a-py/blob/main/_screenshots/main.png?raw=true)
 
 ---
 
-![im2a example 2](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_text.png?raw=true)
+![im2a example 3](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_text.png?raw=true)
 
 ---
 
