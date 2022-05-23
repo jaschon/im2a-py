@@ -29,14 +29,14 @@ python setup.py test
 ### Script Examples
 
 ```
-./im2a.py ~/Desktop/tacocat.jpg
-./im2a.py --ascii ~/Desktop/tacocat.jpg
+./im2a.py ~/Desktop/tri.jpg
+./im2a.py --ascii ~/Desktop/tri.jpg
 # Ascii Text File
 
-./im2a.py --dots ~/Desktop/tacocat.jpg
+./im2a.py --dots ~/Desktop/tri.jpg
 # Use Dots
 
-./im2a.py --polygon --size 40 --sides 9 --rotation 45  ~/Desktop/tacocat.jpg
+./im2a.py --polygon --size 40 --sides 9 --rotation 45  ~/Desktop/tri.jpg
 # Block Size 40px / Use 9-Sided Polygons / Rotated 45deg
 ```
 
