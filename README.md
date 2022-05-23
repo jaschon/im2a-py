@@ -45,26 +45,26 @@ im2a --polygon --size 40 --sides 9 --rotation 45  ~/Desktop/tri.jpg
 ```
 ---
 
-##### Ascii (Text File)
+##### 1. Ascii (Text File)
 
 ![im2a example 1](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_ascii.png?raw=true)
 
 ---
 
-##### Text (PNG Image)
+##### 2. Text (PNG Image)
 
 ![im2a example 2](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_text.png?raw=true)
 
 
 ---
 
-##### Dots (PNG Image)
+##### 3. Dots (PNG Image)
 
 ![im2a example 3](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_dots.png?raw=true)
 
 ---
 
-##### Polygon (PNG Image)
+##### 4. Polygon (PNG Image)
 
 ![im2a example 4](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_polygon.png?raw=true)
 
