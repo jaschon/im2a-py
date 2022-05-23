@@ -42,11 +42,11 @@ python setup.py test
 
 ---
 
-![checky](https://github.com/jaschon/im2a-py/blob/main/_screenshots/main.png?raw=true)
+![im2a example 1](https://github.com/jaschon/im2a-py/blob/main/_screenshots/main.png?raw=true)
 
 ---
 
-![checky](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_text.png?raw=true)
+![im2a example 2](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_text.png?raw=true)
 
 ---
 
