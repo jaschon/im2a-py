@@ -31,12 +31,16 @@ im2a [option flags] [path]
 ```
 im2a ~/Desktop/tri.jpg
 im2a --ascii ~/Desktop/tri.jpg
-# Ascii Text File
+# Ascii text file.
+
+im2a --text ~/Desktop/tri.jpg
+# PNG Image using text characters.
 
 im2a --dots ~/Desktop/tri.jpg
-# Use Dots
+# PNG Image using dots.
 
 im2a --polygon --size 40 --sides 9 --rotation 45  ~/Desktop/tri.jpg
+# PNG Image using polygons.
 # Block Size 40px / Use 9-Sided Polygons / Rotated 45deg
 ```
 ---
