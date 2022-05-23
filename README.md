@@ -49,20 +49,20 @@ im2a --polygon --size 40 --sides 9 --rotation 45  ~/Desktop/tri.jpg
 
 ##### Text (PNG Image)
 
-![im2a example 3](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_text.png?raw=true)
+![im2a example 2](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_text.png?raw=true)
 
 
 ---
 
 ##### Dots (PNG Image)
 
-![im2a example 2](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_dots.png?raw=true)
+![im2a example 3](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_dots.png?raw=true)
 
 ---
 
 ##### Polygon (PNG Image)
 
-![im2a example 3](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_poly.png?raw=true)
+![im2a example 4](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_polygon.png?raw=true)
 
 ---
 
