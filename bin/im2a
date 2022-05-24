@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-./im2a.py [path] 
+./im2a.py [paths...] 
     --ascii (default type, output to text file)
     --block (grayscale blocks)
     --dots (scaled grayscale circles)
@@ -17,43 +17,45 @@ import sys
 import im2a
 
 __author__ = "Jason Rebuck"
-__copyright__ = "2011-2021"
+__copyright__ = "2011-2022"
 
 
 def main(parser):
     """Decide what action to run."""
     args = parser.parse_args()
-    try:
-        im = im2a.Im2Scan(args.path, block_size=args.size)
-    except (FileNotFoundError, OSError):
-        sys.exit("Image Problems! Check Image Type and Path.")
-    if args.block:
-        output = im2a.Im2Block(im)
-    elif args.text:
-        output = im2a.Im2Text(im)
-    elif args.dots:
-        output = im2a.Im2Dots(im)
-    elif args.polygon:
-        output = im2a.Im2Polygon(im, sides=args.sides, rotation=args.rotation)
-    else:
-        output = im2a.Im2Ascii(im)
-    output.save()
+    for path in args.paths:
+        try:
+            im = im2a.Im2Scan(path, block_size=args.size)
+        except (FileNotFoundError, OSError):
+            sys.exit("Image Problems! Check Image Type and Path.")
+        if args.block:
+            output = im2a.Im2Block(im)
+        elif args.text:
+            output = im2a.Im2Text(im)
+        elif args.dots:
+            output = im2a.Im2Dots(im)
+        elif args.polygon:
+            output = im2a.Im2Polygon(im, sides=args.sides, rotation=args.rotation)
+        else:
+            output = im2a.Im2Ascii(im)
+        output.save()
 
 def setup_parser():
     """Setup Parser"""
     parser = argparse.ArgumentParser(description="im2a Converter")
-    parser.add_argument("path", help="Image Path")
-    parser.add_argument("--size", "-s", help="Block Size", type=int, default=10, action="store")
-    parser.add_argument("--sides", help="N-Sides (Polygon Only)", 
+    parser.add_argument("paths", help="one or more image paths", nargs='+')
+    parser.add_argument("--size", "-s", help="pixel block size", \
+            type=int, default=10, action="store")
+    parser.add_argument("--sides", help="n-sides (polygon only)", 
             type=int, default=8, action="store")
-    parser.add_argument("--rotation", help="Rotation (Polygon Only)", 
+    parser.add_argument("--rotation", help="rotation (polygon only)", 
             type=int, default=0, action="store")
     group = parser.add_mutually_exclusive_group()
-    group.add_argument("--block", "-b", help="Output as Blocks", action="store_true")
-    group.add_argument("--ascii", "-a", help="Output in Ascii Text", action="store_true")
-    group.add_argument("--dots", "-d", help="Output in Dots", action="store_true")
-    group.add_argument("--text", "-t", help="Output in Text", action="store_true")
-    group.add_argument("--polygon", "-p", help="Output in N-Sided Polygon", action="store_true")
+    group.add_argument("--block", "-b", help="output as blocks", action="store_true")
+    group.add_argument("--ascii", "-a", help="output in ascii text", action="store_true")
+    group.add_argument("--dots", "-d", help="output in dots", action="store_true")
+    group.add_argument("--text", "-t", help="output in text", action="store_true")
+    group.add_argument("--polygon", "-p", help="output in n-sided polygon", action="store_true")
     return parser
 
 if __name__ == "__main__":
