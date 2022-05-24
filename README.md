@@ -15,13 +15,13 @@ python setup.py test
 ## Script Usage
 
 ```
-im2a [option flags] [path] 
+im2a [option flags] [paths...] 
     --ascii (default type, output to text file)
     --block (grayscale blocks)
     --dots (scaled grayscale circles)
     --text (grayscale text characters)
     --polygon (grayscale n-sides polygons with rotation. default 8 sides, no rotation)
-    --size (optional, default 20)
+    --size (optional pixel block size, default 10)
     --sides (optional for polygon) 
     --rotation (optional for polygon)
 ```
@@ -63,7 +63,7 @@ im2a --dots ~/Desktop/tri.jpg
 
 ```
 im2a --polygon --size 40 --sides 9 --rotation 45  ~/Desktop/tri.jpg
-# Options: block size 40px / 9-sided polygons / rotated 45deg
+# Options: pixel block size 40px / 9-sided polygons / rotated 45deg
 ```
 
 ![im2a example 4](https://github.com/jaschon/im2a-py/blob/main/_screenshots/tri_polygon.png?raw=true)
