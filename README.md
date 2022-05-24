@@ -15,7 +15,7 @@ python setup.py test
 ## Script Usage
 
 ```
-im2a [option flags] [paths...] 
+im2a [option flags] [one or more paths] 
     --ascii (default type, output to text file)
     --block (grayscale blocks)
     --dots (scaled grayscale circles)
