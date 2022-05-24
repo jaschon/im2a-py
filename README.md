@@ -16,7 +16,7 @@ python setup.py test
 
 ```
 im2a [option flags] [one or more paths] 
-    --ascii (default type, output to text file)
+    --ascii (default type, outputs to text file instead of making a PNG)
     --block (grayscale blocks)
     --dots (scaled grayscale circles)
     --text (grayscale text characters)
