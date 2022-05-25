@@ -42,7 +42,7 @@ def main(parser):
 
 def setup_parser():
     """Setup Parser"""
-    parser = argparse.ArgumentParser(description="im2a Converter")
+    parser = argparse.ArgumentParser(description="Image Converter")
     parser.add_argument("paths", help="one or more image paths", nargs='+')
     parser.add_argument("--size", "-s", help="pixel block size", \
             type=int, default=10, action="store")
