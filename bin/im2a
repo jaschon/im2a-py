@@ -14,7 +14,11 @@
 import argparse
 import os
 import sys
-import im2a
+try:
+    import im2a
+except ModuleNotFoundError: 
+    sys.path.append("..")
+    import im2a
 
 __author__ = "Jason Rebuck"
 __copyright__ = "2011-2022"
