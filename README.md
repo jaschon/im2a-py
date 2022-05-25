@@ -1,5 +1,5 @@
 # im2a
-__Convert images to a grid of Ascii characters, dots, blocks or n-sided polygons.__
+__convert images to patterns__
 
 ## Requirements
 
