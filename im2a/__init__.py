@@ -6,8 +6,8 @@ from PIL import Image, ImageDraw, ImageFont
 from os import path
 
 __author__ = "Jason Rebuck"
-__copyright__ = "2011-2021"
-__version__ = "0.39"
+__copyright__ = "2011-2022"
+__version__ = "0.40"
 
 class Im2Scan:
     """Scan Image Pixels and Build Color and Character Maps"""
