@@ -28,6 +28,8 @@ im2a [option flags] [one or more paths]
 
 ### Script Examples
 
+*([sample image](https://commons.wikimedia.org/wiki/File:Smithsonian-Triceratops-skull-cast-0002a.jpg))*
+
 ##### 1. Ascii (Text File)
 ```
 im2a ~/Desktop/tri.jpg
