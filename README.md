@@ -28,7 +28,7 @@ im2a [option flags] [one or more paths]
 
 ### Script Examples
 
-*([sample image](https://commons.wikimedia.org/wiki/File:Smithsonian-Triceratops-skull-cast-0002a.jpg))*
+- Test Image: *[Triceratops Skull Cast - MathKnight/CC BY-SA 4.0](https://commons.wikimedia.org/wiki/File:Smithsonian-Triceratops-skull-cast-0002a.jpg)*
 
 ##### 1. Ascii (Text File)
 ```
