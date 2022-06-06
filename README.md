@@ -1,5 +1,5 @@
 # im2a
-__convert images to patterns__
+__fancy images__
 
 ## Requirements
 
