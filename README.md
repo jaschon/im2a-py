@@ -1,5 +1,5 @@
 # im2a
-__artistic effects__
+__images + artistic effects__
 
 ## Requirements
 
