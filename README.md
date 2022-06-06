@@ -12,7 +12,7 @@ python setup.py install
 python setup.py test
 ```
 
-## Script Usage
+## Commandline Usage
 
 ```
 im2a [option flags] [one or more paths] 
@@ -26,7 +26,7 @@ im2a [option flags] [one or more paths]
     --rotation (optional for polygon)
 ```
 
-### Script Examples
+### Commandline Examples
 
 - Test Image: *[Triceratops Skull Cast - MathKnight/CC BY-SA 4.0](https://commons.wikimedia.org/wiki/File:Smithsonian-Triceratops-skull-cast-0002a.jpg)*
 
